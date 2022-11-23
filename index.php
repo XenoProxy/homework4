@@ -153,19 +153,72 @@ for($i = 1; $i <= $count; $i++){
     }
 }
 print_r($arr);
+echo '<br>';
 
 //task 16 ==================================
 echo '<br> Task 16 <br>';
+$arr = [1,8,0,13,76,8,7,0,22,0,2,3,2];
+if(in_array(0, $arr, $strict = true)){
+    $nulls = array_keys($arr, 0);
+    //print_r($nulls);    
+    $first_null = $nulls[0];
+    $last_null = end($nulls);
+    //echo $last_null;
+    $sum = 0;
+    for($i = $first_null; $i <= $last_null; $i++){
+        $sum += $arr[$i];
+    }
+    echo $sum . '<br>';
+} else{
+    echo '0 <br>';
+}
 
 //task 17 ==================================
 echo '<br> Task 17 <br>';
+//hex
+$arr = [];
+for ($i = 0; $i < 6; $i++){
+    $arr[$i] = rand(0, 9);
+}
+$color = implode("", $arr);
+
+//dechex
+//str_shuffle — Переставляет символы в строке случайным образом
+$color = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
+echo "<div style='width: 50px; height: 50px; background-color: ${color}'></div>";
 
 //task 18 ==================================
 echo '<br> Task 18 <br>';
+$str = '332 441 550';
+for ($i = 1; $i < strlen($str); $i++){
+    if ($str[$i-1] === $str[$i]){
+        $char = $str [$i-1];
+        $str [$i-1] = str_replace($char, '!', $str);
+        $str[$i] = str_replace($char, '!', $str);
+    }    
+}
+echo $str . '<br>';
 
 //task 19 ==================================
 echo '<br> Task 19 <br>';
+function phoneNumberValid($tel){
+    if (preg_match("/^[\+]{1}[\d]{1,3}\([\d]{2,3}\)[\d]{5,7}$/", $tel)){
+        return true;
+    } else{
+        return false;
+    }
+}
+//var_export() возвращает интерпретируемое строковое представление переменной
+echo var_export(phoneNumberValid('+7(495)5105555'), 1) . '<br>';
 
 //task 20 ==================================
 echo '<br> Task 20 <br>';
+function emailValid($email){
+    if (preg_match("/^(?:[a-z0-9]+(?:[-_.]?[a-z0-9]+)?@[a-z0-9_.-]+(?:\.?[a-z0-9]+)?\.[a-z]{2,11})$/i", $email)){
+        return true;
+    } else{
+        return false;
+    }
+}
+echo var_export(emailValid('xenoproxy@mail.com'), 1) . '<br>';
 ?>
